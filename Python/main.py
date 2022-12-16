@@ -1,5 +1,7 @@
 import numpy as np
 
+# import nnfs
+
 np.random.seed(0)
 
 
