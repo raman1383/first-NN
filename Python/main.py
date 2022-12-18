@@ -4,7 +4,7 @@ from nnfs.datasets import spiral_data
 
 nnfs.init()
 
-X, y = spiral_data(100, 3)
+X, y = spiral_data(100, 3) 
 
 
 class Layer_Dense:
