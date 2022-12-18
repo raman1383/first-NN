@@ -2,6 +2,7 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
 
 import pandas as pd
+from IPython.display import clear_output
 
 import tensorflow as tf
 
@@ -48,7 +49,6 @@ def make_input_fn(data_df, label_df, num_epochs=10, shuffle=True, batch_size=32)
 train_input_fn = make_input_fn(dftrain, y_train)
 eval_input_fn = make_input_fn(dfeval, y_eval, num_epochs=1, shuffle=False)
 
-
 linear_est = tf.estimator.LinearClassifier(feature_columns=feature_columns)
 # We create a linear estimtor by passing the feature columns we created earlier
 
@@ -59,3 +59,8 @@ result = linear_est.evaluate(eval_input_fn)
 clear_output()  # clears consoke output
 # the result variable is simply a dict of stats about our model
 print(result['accuracy'])
+
+pred_dicts = list(linear_est.predict(eval_input_fn))
+probs = pd.Series([pred['probabilities'][1] for pred in pred_dicts])
+
+probs.plot(kind='hist', bins=20, title='predicted probabilities')
