@@ -208,21 +208,21 @@ void deloc_spiral(spiral_data_t *data)
 void activation_softmax(layer_dense_t *output_layer)
 {
     double sum = 0;
-    double maxu = 0;
+    double max = 0;
     int i = 0;
 
-    maxu = output_layer->output[0];
+    max = output_layer->output[0];
     for (i = 0; i < output_layer->input_size; i++)
     {
-        if (output_layer->output[i] > maxu)
+        if (output_layer->output[i] > max)
         {
-            maxu = output_layer->output[i];
+            max = output_layer->output[i];
         }
     }
 
     for (i = 0; i < output_layer->output_size; i++)
     {
-        output_layer->output[i] = exp(output_layer->output[i] - maxu);
+        output_layer->output[i] = exp(output_layer->output[i] - max);
         sum += output_layer->output[i];
     }
 
