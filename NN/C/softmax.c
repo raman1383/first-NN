@@ -205,6 +205,46 @@ void deloc_spiral(spiral_data_t *data)
     }
 }
 
+void activation_softmax(layer_dense_t *output_layer)
+{
+    double sum = 0;
+    double maxu = 0;
+    int i = 0;
+
+    maxu = output_layer->output[0];
+    for (i = 0; i < output_layer->input_size; i++)
+    {
+        if (output_layer->output[i] > maxu)
+        {
+            maxu = output_layer->output[i];
+        }
+    }
+
+    for (i = 0; i < output_layer->output_size; i++)
+    {
+        output_layer->output[i] = exp(output_layer->output[i] - maxu);
+        sum += output_layer->output[i];
+    }
+
+    for (i = 0; i < output_layer->output_size; i++)
+    {
+        output_layer->output[i] = output_layer->output[i] / sum;
+    }
+}
+
+double sum_softmax_layer_output(layer_dense_t *output_layer)
+{
+    double sum = 0.0;
+    int i = 0;
+
+    for (i = 0; i < output_layer->output_size; i++)
+    {
+        sum += output_layer->output[i];
+    }
+
+    return sum;
+}
+
 int main()
 {
     srand(0);
