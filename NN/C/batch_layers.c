@@ -21,5 +21,12 @@ typedef struct layer_dense_t
 double dot_product(double *inputs, double *weights, double *bias, int input_size)
 {
     int i = 0;
-    
+    double output = 0.0;
+    for (i = 0; i < input_size; i++)
+    {
+        output += inputs[i] * weights[i];
+    }
+    output += *bias;
+    return output;
 }
+
