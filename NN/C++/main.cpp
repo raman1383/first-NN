@@ -623,7 +623,8 @@ namespace numcpp
         return distribution(_random_engine);
     }
 
-    void Random::Matrix(const unsigned int rows, const unsigned int cols, const double lower, const double upper, Md &out_mat)
+    void Random::Matrix(const unsigned int rows, const unsigned int cols, const double lower,
+                        const double upper, Md &out_mat)
     {
         for (unsigned int i = 0; i < rows; i++)
         {

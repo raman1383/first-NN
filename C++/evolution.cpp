@@ -13,7 +13,8 @@ const string GENES = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP"
                      "QRSTUVWXYZ 1234567890, .-;:_!\"#%&/()=?@${[]}";
 
 // Target string to be generated
-const string TARGET = "I love GeeksforGeeks";
+// const string TARGET = "Genetic algorithms";
+const string TARGET = "I live genetic algorithms and pizza";
 
 // Function to generate random numbers in given range
 int random_num(int start, int end)
@@ -147,8 +148,8 @@ int main()
         // Otherwise generate new offsprings for new generation
         vector<Individual> new_generation;
 
-        // Perform Elitism, that mean 10% of fittest population
-        // goes to the next generation
+        //! Perform Elitism, that mean 10% of fittest population
+        //! goes to the next generation
         int s = (10 * POPULATION_SIZE) / 100;
         for (int i = 0; i < s; i++)
             new_generation.push_back(population[i]);
